@@ -1,7 +1,9 @@
 import random
 
+
 class NoTileError(BaseException):
     '''无牌错误'''
+
 
 class Tiles:
     '''
@@ -29,7 +31,6 @@ class Tiles:
         self.tiles = sorted(self.tiles)
         self.current_pos = 0
 
-
     @property
     def capicity(self):
         ''' 牌堆大小，总容量'''
@@ -38,11 +39,11 @@ class Tiles:
     @property
     def size(self):
         '''牌堆还剩多少张牌'''
-        return 0 if self.empty else self.capicity - self.current_pos 
+        return 0 if self.empty else self.capicity - self.current_pos
 
     @property
     def empty(self):
-        return self.current_pos > self.capicity
+        return self.current_pos >= self.capicity
 
     def shuffle(self) -> None:
         random.shuffle(self.tiles)
@@ -54,14 +55,8 @@ class Tiles:
         self.current_pos += 1
         return val
 
-    def see(self, pos = None) -> int:
+    def see(self, pos=None) -> int:
         pos = self.current_pos if pos is None else pos
-        if pos > self.capicity:
+        if pos >= self.capicity:
             raise NoTileError(f'这里没牌给你看！你在看{pos}，最多只能看{self.capicity}！')
         return self.tiles[pos]
-
-
-if __name__ == "__main__":
-    tiles = Tiles()
-    print(sorted(tiles.tiles))
-    print(tiles.capicity)
