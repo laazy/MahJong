@@ -16,8 +16,6 @@ class Tiles:
     上述牌以下述规则对应：
     x筒：1x，x条：2x，x万：3x
     东南西北中发白：40 41 42 43 50 51 52
-    花牌：60 61 62 63 70 71 72 73
-
     '''
     DEFAULT_COUNT = 4
 
@@ -27,7 +25,6 @@ class Tiles:
             self.tiles += [11+i, 21+i, 31+i]
         self.tiles += [40, 41, 42, 43, 50, 51, 52]
         self.tiles *= 4
-        self.tiles += [60, 61, 62, 63, 70, 71, 72, 73]
         self.tiles = sorted(self.tiles)
         self.current_pos = 0
 
