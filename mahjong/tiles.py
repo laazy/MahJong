@@ -42,7 +42,7 @@ class Tiles:
 
     @property
     def empty(self):
-        return self.current_pos > self.size
+        return self.current_pos > self.capicity
 
     def shuffle(self) -> None:
         random.shuffle(self.tiles)
@@ -56,11 +56,12 @@ class Tiles:
 
     def see(self, pos = None) -> int:
         pos = self.current_pos if pos is None else pos
-        if pos > self.current_pos:
-            raise NoTileError(f'这里没牌给你看！你在看{pos}，最多只能看{self.current_pos}！')
+        if pos > self.capicity:
+            raise NoTileError(f'这里没牌给你看！你在看{pos}，最多只能看{self.capicity}！')
         return self.tiles[pos]
 
 
 if __name__ == "__main__":
     tiles = Tiles()
     print(sorted(tiles.tiles))
+    print(tiles.capicity)
