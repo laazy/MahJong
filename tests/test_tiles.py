@@ -1,6 +1,6 @@
 import unittest
 
-from mahjong.tiles import Tiles
+from mahjong.tiles import Tiles, NoTileError
 
 
 class TilesTestCase(unittest.TestCase):
@@ -18,6 +18,8 @@ class TilesTestCase(unittest.TestCase):
             self.assertEqual(tiles.size, 144 - i)
             tiles.draw()
         self.assertEqual(tiles.size, 0)
+        with self.assertRaises(NoTileError):
+            tiles.draw()
 
     def test_shuffle(self):
         '''我认为两次打乱后依然相同是实际不可能的'''
@@ -34,3 +36,5 @@ class TilesTestCase(unittest.TestCase):
         self.assertEqual(tiles.see(0), tiles.see(0))
         self.assertEqual(tiles.see(55), tiles.see(55))
         self.assertEqual(tiles.see(143), tiles.see(143))
+        with self.assertRaises(NoTileError):
+            tiles.see(144)
